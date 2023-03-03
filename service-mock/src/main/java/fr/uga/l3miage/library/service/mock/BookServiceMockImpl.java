@@ -75,10 +75,9 @@ public class BookServiceMockImpl implements BookService {
 
     @Override
     public Collection<Book> findByAuthor(Long authorId, String title) throws EntityNotFoundException {
-        AuthorServiceMockImpl.doGet(authorId);
+        AuthorServiceMockImpl.doGet(authorId); // Trigger EntityNotFoundException if no Author founded
         return filterBooks(MockData.authors.get(authorId).getBooks(), title);
     }
-
 
     private Author bind(Long authorId, Book book) throws EntityNotFoundException {
         Author author = authorService.get(authorId);
@@ -88,6 +87,7 @@ public class BookServiceMockImpl implements BookService {
     }
 
     private static void doSave(Book book) {
+
         MockData.books.put(book.getId(), book);
     }
 

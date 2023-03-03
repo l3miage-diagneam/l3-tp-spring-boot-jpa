@@ -43,6 +43,7 @@ public class AuthorServiceMockImpl implements AuthorService {
 
     @Override
     public Collection<Author> list() {
+
         return MockData.authors.values().stream().toList();
     }
 
@@ -73,13 +74,11 @@ public class AuthorServiceMockImpl implements AuthorService {
             books.stream().map(Book::getId).forEach(MockData.books::remove);
 
         }
-
         MockData.authors.remove(id);
-
-
     }
 
     private static void doUpdate(Author author) {
+
         MockData.authors.put(author.getId(), author);
     }
 
